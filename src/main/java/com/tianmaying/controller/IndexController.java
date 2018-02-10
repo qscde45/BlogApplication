@@ -31,7 +31,7 @@ public class IndexController {
 
     @GetMapping("/{username:[a-z0-9_]+}")
     @ResponseBody
-    public List<Blog> ss (@PathVariable String username){
+    public List<Blog> getBlogList (@PathVariable String username){
         User user = userService.findByName(username);
         return blogService.findBlogs(user);
     }
