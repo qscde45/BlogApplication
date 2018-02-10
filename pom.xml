@@ -37,6 +37,11 @@
       <version>1.9.22</version>
     </dependency>
     <dependency>
+      <groupId>com.tianmaying</groupId>
+      <artifactId>blog-service</artifactId>
+      <version>1.0.6</version>
+    </dependency>
+    <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-devtools</artifactId>
       <optional>true</optional>
