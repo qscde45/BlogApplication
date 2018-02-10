@@ -28,9 +28,9 @@ public class IndexController {
                                 @RequestParam(value = "page", required = false, defaultValue = "1") int page,
                                 @RequestParam(value = "size", required = false, defaultValue = "10") int size) {
         //Your code goes here
-        //User user = userService.findByName(username);
+        User user = userService.findByName(username);
         int first = (page - 1) * size;
-        List<Blog> lists = blogService.findBlogs().subList(first, first + size);
+        List<Blog> lists = blogService.findBlogs(user).subList(first, first + size);
         return lists;
     }
 
