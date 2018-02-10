@@ -1,33 +1,30 @@
 package com.tianmaying.controller;
 
+import com.tianmaying.model.Blog;
 import com.tianmaying.service.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class IndexController {
+@RequestMapping("/blogs/{id}")
+public class BlogController {
 
     private final BlogService blogService;
 
     @Autowired
-    public IndexController(BlogService blogService) {
+    public BlogController(BlogService blogService) {
         this.blogService = blogService;
     }
 
-    @GetMapping("/{username}")
-    //使用@RequestParam获取参数
-    public String get(@PathVariable("username") String username, Model model) {
+    @GetMapping
+    public String get(@PathVariable("id") long id, Model model) {
         // Your Code goes here
-        // 渲染模板list.html
-        return "list";
+        Blog blog = blogService.findBlog(id);
+        model.addAttribute("blog", blog);
+        return "item";
     }
-
-    @GetMapping("/about")
-    public String about() {
-        return "about";
-    }
-
 }
