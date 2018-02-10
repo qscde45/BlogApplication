@@ -30,6 +30,7 @@ public class Initialization implements CommandLineRunner {
         for (int i = 1; i <= 50; i++) {
             createBlog("Title " + Integer.toString(i), "Content " + Integer.toString(i), user);
         }
+        createBlog("key", "key", user);
     }
 
     private User createUser(String username, String email) {
