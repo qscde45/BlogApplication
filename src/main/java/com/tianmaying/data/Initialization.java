@@ -27,11 +27,9 @@ public class Initialization implements CommandLineRunner {
     public void run(String... strings) throws Exception {
         User user = createUser("tianmaying", "admin@tianmaying.com");
 
-        createBlog("Title 1", "Content 1", user);
-        createBlog("Title 2", "Content 2", user);
-        createBlog("Title 3", "Content 3", user);
-        createBlog("Title 4", "Content 4", user);
-        createBlog("Title 5", "Content 5", user);
+        for (int i = 1; i <= 50; i++) {
+            createBlog("Title " + Integer.toString(i), "Content " + Integer.toString(i), user);
+        }
     }
 
     private User createUser(String username, String email) {
