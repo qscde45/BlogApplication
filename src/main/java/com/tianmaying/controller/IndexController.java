@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.net.Inet4Address;
 import java.util.List;
 
 @Controller
@@ -31,11 +32,14 @@ public class IndexController {
     //@GetMapping("/{username}")
     //使用@RequestParam获取参数
     @GetMapping("/")
-    public String get(@RequestParam("username") String username, Model model) {
+    public String get(@RequestParam("username") String username,
+                      @RequestParam(name = "page", required = false, defaultValue = "1") String page,
+                      @RequestParam(name = "size", required = false, defaultValue = "10") String size, Model model) {
         // Your Code goes here
         // 渲染模板list.html
+        int first = (Integer.parseInt(page) - 1) * (Integer.parseInt(size));
         User user = userService.findByName(username);
-        List<Blog> bloglists = blogService.findBlogs(user);
+        List<Blog> bloglists = blogService.findBlogs(user).subList(first, first + Integer.parseInt(size));
         model.addAttribute("bloglists", bloglists);
         return "list";
     }
