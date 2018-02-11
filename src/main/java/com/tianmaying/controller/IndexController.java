@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -26,9 +28,10 @@ public class IndexController {
 
 
 
-    @GetMapping("/{username}")
+    //@GetMapping("/{username}")
     //使用@RequestParam获取参数
-    public String get(@PathVariable("username") String username, Model model) {
+    @GetMapping("/")
+    public String get(@RequestParam("username") String username, Model model) {
         // Your Code goes here
         // 渲染模板list.html
         User user = userService.findByName(username);

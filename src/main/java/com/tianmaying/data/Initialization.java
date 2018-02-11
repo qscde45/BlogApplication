@@ -32,6 +32,7 @@ public class Initialization implements CommandLineRunner {
         createBlog("Title 3", "Content 3", user);
         createBlog("Title 4", "Content 4", user);
         createBlog("Title 5", "Content 5", user);
+
     }
 
     private User createUser(String username, String email) {
