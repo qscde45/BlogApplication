@@ -33,13 +33,13 @@ public class IndexController {
     //使用@RequestParam获取参数
     @GetMapping("/")
     public String get(@RequestParam("username") String username,
-                      @RequestParam(name = "page", required = false, defaultValue = "1") String page,
-                      @RequestParam(name = "size", required = false, defaultValue = "10") String size, Model model) {
+                      @RequestParam(value = "page", required = false, defaultValue = "1") int page,
+                      @RequestParam(name = "size", required = false, defaultValue = "10") int size, Model model) {
         // Your Code goes here
         // 渲染模板list.html
-        int first = (Integer.parseInt(page) - 1) * (Integer.parseInt(size));
+        int first = (page - 1) * size;
         User user = userService.findByName(username);
-        List<Blog> bloglists = blogService.findBlogs(user).subList(first, first + Integer.parseInt(size));
+        List<Blog> bloglists = blogService.findBlogs(user).subList(first, first + size);
         model.addAttribute("bloglists", bloglists);
         return "list";
     }
