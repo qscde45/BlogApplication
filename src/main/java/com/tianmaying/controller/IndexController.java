@@ -31,8 +31,8 @@ public class IndexController {
 
     //@GetMapping("/{username}")
     //使用@RequestParam获取参数
-    @GetMapping("/")
-    public String get(@RequestParam("username") String username,
+    @GetMapping("/{username}")
+    public String get(@PathVariable("username") String username,
                       @RequestParam(value = "page", required = false, defaultValue = "1") int page,
                       @RequestParam(name = "size", required = false, defaultValue = "10") int size, Model model) {
         // Your Code goes here
