@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -42,14 +43,16 @@ public class CreateBlogController {
 
     @PostMapping("/blogs/create")
     public String post(@RequestParam("title") String title,
-                       @RequestParam("tags") List<Tag> tags,
+                       @RequestParam("tags") String tags,
                        @RequestParam("content") String content) {
 
 //        blog.setAuthor(userService.findByName("tianmaying"));
 //        blogService.createBlog(blog);
 
         Blog tmp = new Blog(title, content,userService.findByName("tianmaying"));
-        tmp.setTags(tags);
+        List<Tag> list = new ArrayList<>();
+        list.add(new Tag(tags));
+        tmp.setTags(list);
         Blog blog = blogService.createBlog(tmp);
 
         //model.addAttribute("blog", blog);
