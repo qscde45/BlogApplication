@@ -1,6 +1,7 @@
 package com.tianmaying.controller;
 
 import com.tianmaying.model.Blog;
+import com.tianmaying.model.Tag;
 import com.tianmaying.model.User;
 import com.tianmaying.service.BlogService;
 import com.tianmaying.service.UserService;
@@ -10,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 @Controller
 public class CreateBlogController {
@@ -39,8 +42,15 @@ public class CreateBlogController {
 
     @PostMapping("/blogs/create")
     public String post(@RequestParam("title") String title,
+                       @RequestParam("tags") List<Tag> tags,
                        @RequestParam("content") String content) {
-        Blog blog = blogService.createBlog(new Blog(title, content,userService.findByName("tianmaying")));
+
+//        blog.setAuthor(userService.findByName("tianmaying"));
+//        blogService.createBlog(blog);
+
+        Blog tmp = new Blog(title, content,userService.findByName("tianmaying"));
+        tmp.setTags(tags);
+        Blog blog = blogService.createBlog(tmp);
 
         //model.addAttribute("blog", blog);
 
