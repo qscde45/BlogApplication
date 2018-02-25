@@ -43,21 +43,21 @@ public class CreateBlogController {
 
     @PostMapping("/blogs/create")
     public String post(@RequestParam("title") String title,
-                       @RequestParam("tags") String tags,
-                       @RequestParam("content") String content) {
+                       //@RequestParam("tags") String tags,
+                       @RequestParam("content") String content,
+                       Model model) {
 
 //        blog.setAuthor(userService.findByName("tianmaying"));
 //        blogService.createBlog(blog);
 
         Blog tmp = new Blog(title, content,userService.findByName("tianmaying"));
-        List<Tag> list = new ArrayList<>();
-        list.add(new Tag(tags));
-        tmp.setTags(list);
+//        List<Tag> list = new ArrayList<>();
+//        list.add(new Tag(tags));
+//        tmp.setTags(list);
         Blog blog = blogService.createBlog(tmp);
 
-        //model.addAttribute("blog", blog);
+        model.addAttribute("blog", blog);
 
-        //return "redirect:/blogs/" + blog.getId();
-        return "redirect:/tianmaying";
+        return "redirect:/blogs/" + blog.getId();
     }
 }
