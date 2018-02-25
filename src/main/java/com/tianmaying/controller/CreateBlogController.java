@@ -57,6 +57,7 @@ public class CreateBlogController {
 
         //model.addAttribute("blog", blog);
 
-        return "redirect:/blogs/" + blog.getId();
+        //return "redirect:/blogs/" + blog.getId();
+        return "redirect:/tianmaying";
     }
 }
