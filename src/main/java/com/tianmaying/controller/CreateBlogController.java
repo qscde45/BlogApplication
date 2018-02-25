@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -42,22 +43,23 @@ public class CreateBlogController {
 //    }
 
     @PostMapping("/blogs/create")
-    public String post(@RequestParam("title") String title,
-                       //@RequestParam("tags") String tags,
-                       @RequestParam("content") String content,
-                       Model model) {
+    public String post(Blog blog) {
 
-//        blog.setAuthor(userService.findByName("tianmaying"));
-//        blogService.createBlog(blog);
 
-        Blog tmp = new Blog(title, content,userService.findByName("tianmaying"));
+
+        Blog newBlog = new Blog();
+        newBlog.setTitle(blog.getTitle());
+        newBlog.setContent(blog.getContent());
+        newBlog.setAuthor(userService.findByName("tianmaying"));
+        newBlog.setCreatedTime(new Date());
+        blogService.createBlog(newBlog);
+
+        //Blog tmp = new Blog(title, content,userService.findByName("tianmaying"));
 //        List<Tag> list = new ArrayList<>();
 //        list.add(new Tag(tags));
 //        tmp.setTags(list);
-        Blog blog = blogService.createBlog(tmp);
+        //Blog blog = blogService.createBlog(tmp);
 
-        model.addAttribute("blog", blog);
-
-        return "redirect:/blogs/" + blog.getId();
+        return "redirect:/blogs/" + newBlog.getId();
     }
 }

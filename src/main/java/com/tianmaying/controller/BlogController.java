@@ -26,5 +26,6 @@ public class BlogController {
         Blog blog = blogService.findBlog(id);
         model.addAttribute("blog", blog);
         return "item";
+
     }
 }
