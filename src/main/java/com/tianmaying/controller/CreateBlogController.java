@@ -8,9 +8,7 @@ import com.tianmaying.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -42,7 +40,7 @@ public class CreateBlogController {
 //        return "redirect:/blogs/" + blog.getId();
 //    }
 
-    @PostMapping("/blogs/create")
+    @RequestMapping(value = "/blogs", method = RequestMethod.POST)
     public String post(Blog blog) {
 
 
@@ -52,7 +50,7 @@ public class CreateBlogController {
         newBlog.setContent(blog.getContent());
         newBlog.setAuthor(userService.findByName("tianmaying"));
         newBlog.setCreatedTime(new Date());
-        blogService.createBlog(newBlog);
+        newBlog=blogService.createBlog(newBlog);
 
         //Blog tmp = new Blog(title, content,userService.findByName("tianmaying"));
 //        List<Tag> list = new ArrayList<>();
