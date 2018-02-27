@@ -43,9 +43,9 @@
 
   <div class="page-header">
 
-    <div class="flash" th:unless="${#strings.isEmpty(message)}" th:text="${message}">
-      <!--<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>-->
-      <!--<strong>Ha!</strong> 注册成功了,开始创建你的博客吧!-->
+    <div class="alert alert-success" th:unless="${#strings.isEmpty(message)}" th:text="${message}">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <strong>Ha!</strong> 注册成功了,开始创建你的博客吧!
     </div>
 
     <h1 class="blog-title">Lorem 的博客
