@@ -44,7 +44,7 @@ public class RegisterController {
         User user = form.ToUser();
         userService.register(user);
         session.setAttribute("SESSION_LOGGED_IN", true);
-        redirectAttributes.addFlashAttribute("message", "Login Success");
+        redirectAttributes.addFlashAttribute("message", "success");
         return "redirect:/admin";
     }
 
