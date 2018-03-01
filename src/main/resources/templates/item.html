@@ -108,30 +108,32 @@
 
       <section class="comment-list">
         <h4 class="page-header">文章评论</h4>
-        <div class="create-comment clearfix">
-          <textarea id="content" name="content" rows="3"
-                    class="form-control" placeholder="添加新评论"></textarea>
-          <a class="btn btn-success btn-sm btn-publish pull-right" href="#">
-            发布评论</a>
-        </div>
-        <ul class="list-unstyled">
+        <form class="create-comment clearfix" th:action="@{'/blogs/' + ${blog.id} + '/comments'}" method="post">
+          <input type="text" name="content" class="form-control" placeholder="添加新评论">
+          <!--<input type="text" name="name" class="form-control" placeholder="用户名" required="" autofocus="">-->
+
+          <!--<a class="btn btn-success btn-sm btn-publish pull-right" input type="submit">-->
+            <!--发布评论</a>-->
+          <button class="btn btn-success btn-sm btn-publish pull-right" type="submit">
+            发布1评论</button>
+        </form>
+        <ul class="comment-item" th:each="comment:${comments}">
           <li class="clearfix">
             <img src="/img/catty.jpeg" alt="" class="avatar pull-left">
             <p class="content">
-              <a href="#">Harttle,</a>
-              <span class="text-muted date"> 2 mins ago</span>
-              Risus. Suspendisse faucibus orci et nunc. Nullam vehicula fermentum risus. Fusce felis nibh, dignissim
-              vulputate, ultrices.
+              <a th:text="${comment.commentor.name}">Harttle,</a>
+              <span class="text-muted date" th:text="${#dates.format(blog.createdTime, 'yyyy-MM-dd')}"> 2 mins ago</span>
+            <p class="comment-content"><a th:text="${comment.content}">HAHAHA</a></p>
             </p>
           </li>
-          <li class="clearfix">
-            <img src="/img/catty.jpeg" alt="" class="avatar pull-left">
-            <p class="content">
-              <a href="#">David</a>
-              <span class="text-muted date">, yesterday</span>
-              Risus. Suspendisse faucibus orci et nunc. Nullam vehicula fermentum risus. Fusce felis nibh, dignissim
-              vulputate, ultrices.</p>
-          </li>
+          <!--<li class="clearfix">-->
+            <!--<img src="/img/catty.jpeg" alt="" class="avatar pull-left">-->
+            <!--<p class="content">-->
+              <!--<a href="#">David</a>-->
+              <!--<span class="text-muted date">, yesterday</span>-->
+              <!--Risus. Suspendisse faucibus orci et nunc. Nullam vehicula fermentum risus. Fusce felis nibh, dignissim-->
+              <!--vulputate, ultrices.</p>-->
+          <!--</li>-->
         </ul>
       </section>
 

@@ -2,6 +2,7 @@ package com.tianmaying.controller;
 
 import com.tianmaying.form.BlogCreateForm;
 import com.tianmaying.model.Blog;
+import com.tianmaying.model.Comment;
 import com.tianmaying.model.User;
 import com.tianmaying.service.BlogService;
 import com.tianmaying.service.UserService;

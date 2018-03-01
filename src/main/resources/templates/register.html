@@ -42,10 +42,10 @@
     <strong>Warning!</strong> 登陆出错了,请稍后再试!
   </div>
   <h2 class="form-signin-heading">用户注册</h2>
-  <input type="text" th:field="*{name}" class="form-control" placeholder="用户名" required="" autofocus="">
-  <p class="alert alert-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">UserName Should be 2-30 long</p>
   <input type="text" th:field="*{email}" class="form-control" placeholder="电子邮件" required="" autofocus="">
   <p class="alert alert-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email format is incorrect</p>
+  <input type="text" th:field="*{name}" class="form-control" placeholder="用户名" required="" autofocus="">
+  <p class="alert alert-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">UserName Should be 2-30 long</p>
   <input type="text" th:field="*{password}" class="form-control" placeholder="密码" required="" autofocus="">
   <p class="alert alert-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Should be 2-30 long</p>
   <button class="btn btn-primary btn-block" type="submit">确定</button>
