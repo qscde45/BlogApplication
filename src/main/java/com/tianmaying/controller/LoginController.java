@@ -22,8 +22,13 @@ public class LoginController {
     }
 
     @GetMapping
-    public String loginPage(@RequestParam("next") Optional<String> next) {
-        return "login";
+    public String loginPage(@RequestParam("next") Optional<String> next, HttpSession session) {
+        if (session == null || session.getAttribute("CURRENT_USER") == null)
+            return "login";
+        else {
+            User u = (User)session.getAttribute("CURRENT_USER");
+            return "redirect:" + next.orElse("/" + u.getName());
+        }
     }
 
     @PostMapping
