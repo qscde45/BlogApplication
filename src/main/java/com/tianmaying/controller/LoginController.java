@@ -33,7 +33,7 @@ public class LoginController {
 
         User u = userService.login(user.getEmail(), user.getPassword());
         session.setAttribute("CURRENT_USER", u); // If u is null, then no (key, value) will be added to the session.
-        return "redirect:".concat(next.orElse("/"));
+        return "redirect:".concat(next.orElse("/" + u.getName()));
     }
 
 }
